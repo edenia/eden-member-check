@@ -3,7 +3,7 @@
 namespace eoscostarica {
     void edenmember::addmember(name user) {
         require_auth(user);
-        bool isEden = is_eden(user);
+        check( is_eden(user), "Given user is not an Eden Member" );
 
         member_table _member(_self, _self.value);
         auto member_itr = _member.find(user.value);
