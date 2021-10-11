@@ -2,7 +2,7 @@
 
 ## Description
 
-Eden Member Check provides a quick way to get started with Eden members validation.
+Eden Member Check provides a quick way to get started with Eden Members validation.
 
 This project is directly related to [82ed3d0](https://github.com/eoscommunity/Eden/tree/82ed3d05892977f7c796c6ebb86a7dab5b6b3d18) version, future changes to members table structure may not work with this contract.
 
@@ -82,6 +82,87 @@ make -j
 ├── script.sh .......................... Logic to fast contract deploy
 ├── src
 │   └── edenmember.cpp ................. Logic to header file actions
+```
+
+## How does CLSDK works with Eden Members table
+It's necessary to have installed the CLSDK to get it working because some of the next definitions are specified right there.
+
+### Definitions
+To read Eden Members table is needed to first have a small understanding of some basic function or definition of Eden contract use.
+
+#### EDEN_FORWARD_MEMBERS
+It is C++ definition that allow to specify and indicate which fields belongs to the specified struct, here in [member struct](https://github.com/eoscostarica/eden-member-check/blob/main/contracts/edenmember/include/edenmember.hpp#L82) we can check that `struct member` has a value of `member_variant` which represents the `member_v0` or `member_v1` fields.
+
+#### EDEN_FORWARD_FUNCTIONS
+It is as similar as [EDEN_FORWARD_MEMBERS](#eden_forward_members), but It's purpose is for [struct functions](https://github.com/eoscostarica/eden-member-check/blob/main/contracts/edenmember/include/edenmember.hpp#L55-L59) instead of fields.
+
+#### EOSIO_REFLECT
+Indicate to the serializer which fields to handle, and clsdk's ABI generator which fields to include, as It happens in [member_v0](https://github.com/eoscostarica/eden-member-check/blob/main/contracts/edenmember/include/edenmember.hpp#L61), [member_v1](https://github.com/eoscostarica/eden-member-check/blob/main/contracts/edenmember/include/edenmember.hpp#L70) and [member](https://github.com/eoscostarica/eden-member-check/blob/main/contracts/edenmember/include/edenmember.hpp#L93).
+
+#### EOSIO_ACTIONS
+Receive the contract class, contract account and the list of [action](https://github.com/eoscostarica/eden-member-check/blob/main/contracts/edenmember/include/edenmember.hpp#L127) that are going to be needed by the serializer.
+
+#### EOSIO_ACTION_DISPATCHER
+Take the namespace as input to get the actions that were defined into the [namespace](https://github.com/eoscostarica/eden-member-check/blob/main/contracts/edenmember/src/edenmember.cpp#L18) scope.
+
+#### EOSIO_ABIGEN
+Last step is to generate the [abi](https://github.com/eoscostarica/eden-member-check/blob/main/contracts/edenmember/src/edenmember.cpp#L20) according to the before configuration, so then we need to indicate the actions, tables that are going to be public, and the Ricardian Clauses.
+
+Once that is understood, let's jump into some small snippet code examples.
+
+### Eden Table Struct
+
+When a contract wants to read another table, first step is to have same table struct, for Eden Members the table struct is:
+#### member_v0
+```c++
+using member_status_type = uint8_t;
+enum member_status : member_status_type {
+    pending_membership = 0,
+    active_member = 1
+};
+
+using election_participation_status_type = uint8_t;
+enum election_participation_status : election_participation_status_type {
+    not_in_election = 0,
+    in_election = 1
+};
+
+struct member_v0
+{
+    eosio::name account;
+    std::string name;
+    member_status_type status;
+    uint64_t nft_template_id;
+    // Only reflected in v1
+    election_participation_status_type election_participation_status = not_in_election;
+    uint8_t election_rank = 0;
+    eosio::name representative{uint64_t(-1)};
+    std::optional<eosio::public_key> encryption_key;
+
+    uint64_t primary_key() const { return account.value; }
+    uint128_t by_representative() const
+    {
+        return (static_cast<uint128_t>(election_rank) << 64) | representative.value;
+    }
+};
+```
+
+#### member_v1
+```c++
+struct member_v1 : member_v0
+{
+};
+```
+
+With these table structs and the combination of the [definitions](#definitions) the last step is to create the needed logic to check if a given user is an Eden Member or not which is the easier part of the smart contract.
+
+```c++
+bool is_eden(name account) {
+    member_table_type member_tb(eden_account, 0);
+    auto it = member_tb.find(account.value);
+    if(it==member_tb.end() || !it->status()) return false;
+    else return true;
+}
 ```
 
 ## License
