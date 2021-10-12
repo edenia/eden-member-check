@@ -90,7 +90,7 @@ make -j
 ```
 
 ## How does CLSDK works with Eden Members table
-It is necessary to have the CLSDK  installed to get it working because some of the next definitions are specified right there.
+It is necessary to have the CLSDK installed to get it working because some of the next definitions are specified right there.
 
 ### Definitions
 To read Eden Members table is needed to first have a small understanding of some basic function or definition of Eden contract use.
