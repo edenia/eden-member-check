@@ -1,3 +1,9 @@
+<p align="center">
+	<a href="#">
+		<img src="https://raw.githubusercontent.com/eoscostarica/eosio-dashboard/dev/webapp/public/eoscr-logo.png" alt="MIT">
+	</a>
+</p>
+
 # Eden Member Check
 
 ## Description

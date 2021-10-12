@@ -19,6 +19,7 @@ add_custom_command(TARGET edenmember-abigen POST_BUILD
     COMMAND cltester edenmember-abigen.wasm >edenmember.abi
 )
 
+
 execute_process(COMMAND ln -sf ${clsdk_DIR} ${CMAKE_CURRENT_BINARY_DIR}/clsdk)
 execute_process(COMMAND ln -sf ${WASI_SDK_PREFIX} ${CMAKE_CURRENT_BINARY_DIR}/wasi-sdk)
 
