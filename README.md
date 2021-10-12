@@ -1,25 +1,24 @@
 <p align="center">
-	<a href="#">
-		<img src="https://raw.githubusercontent.com/eoscostarica/eosio-dashboard/dev/webapp/public/eoscr-logo.png" alt="MIT">
+	<a href="https://eoscostarica.io">
+		<img src="https://raw.githubusercontent.com/eoscostarica/design-assets/master/logos/eosCR/fullColor-horizontal-transparent-white.png" width="350" alt="MIT">
 	</a>
 </p>
 
 # Eden Member Check
 
-## Description
+This project provides a quick way to get started integrating the logic to validate if an EOS account is an active Eden Member. It is meant to be used as an example to help other projects integrate features for eden members. This same code has been implemented on [eosrate.io](https://eosrate.io) for this purpose.
 
-Eden Member Check provides a quick way to get started with Eden Members validation.
-
-This project is directly related to [82ed3d0](https://github.com/eoscommunity/Eden/tree/82ed3d05892977f7c796c6ebb86a7dab5b6b3d18) version, future changes to members table structure may not work with this contract.
+### Important Note:
+This project is directly related to edenOS version [82ed3d0](https://github.com/eoscommunity/Eden/tree/82ed3d05892977f7c796c6ebb86a7dab5b6b3d18), future changes to members table structure may not work with this contract.
 
 ### Prerequisites
 
 - [Git](https://git-scm.com/)
-- [Eosio](https://developers.eos.io/welcome/latest/getting-started-guide/local-development-environment/index)
+- [EOSIO](https://developers.eos.io/welcome/latest/getting-started-guide/local-development-environment/index)
 
 ## Compilation
 
-This contract is built with eden `clsdk` compiler, to have the local environment configured to compile this contract is needed to [take a look at this link](https://github.com/eoscommunity/demo-clsdk) to learn more about `demo-clsdk` or follow these steps to continue forward.
+This contract is built with a custom complier named `clsdk` developed by the edenOS team. To configure your local environment to compile this contract you will need to [take a look at this repo](https://github.com/eoscommunity/demo-clsdk) to learn more about `demo-clsdk` and follow these steps to continue forward.
 
 ## Get Started
 
@@ -77,21 +76,21 @@ make -j
 
 ```text title="./eos-local"
 .
-├── CMakeLists.txt ..................... Needed minimum requirement to compile the smart contract
-├── edenmember.abi ..................... Abi file that includes ricardian contracts and clauses
-├── edenmember.wasm .................... Wasm file
+├── CMakeLists.txt ..................... Minimum requirements needed to compile the smart contract
+├── edenmember.abi ..................... ABI file that includes ricardian contracts and clauses
+├── edenmember.wasm .................... Web Assembly file
 ├── include
 │   ├── edenmember.hpp ................. Header file for edenmember
 │   └── utils.hpp ...................... Header file for edenmember.hpp file
 ├── ricardian
 │   └── edenmember-ricardian.cpp ....... Ricardian contracts and clauses
-├── script.sh .......................... Logic to fast contract deploy
+├── script.sh .......................... Script to easily deploy the contract
 ├── src
-│   └── edenmember.cpp ................. Logic to header file actions
+│   └── edenmember.cpp ................. Contract Logic and Actions
 ```
 
 ## How does CLSDK works with Eden Members table
-It's necessary to have installed the CLSDK to get it working because some of the next definitions are specified right there.
+It is necessary to have the CLSDK installed to get it working because some of the next definitions are specified right there.
 
 ### Definitions
 To read Eden Members table is needed to first have a small understanding of some basic function or definition of Eden contract use.
@@ -160,7 +159,7 @@ struct member_v1 : member_v0
 };
 ```
 
-With these table structs and the combination of the [definitions](#definitions) the last step is to create the needed logic to check if a given user is an Eden Member or not which is the easier part of the smart contract.
+With these table structs and the combination of the [definitions](#definitions) the last step is to create the necessary logic to check if a given user is an Eden Member or not which is the easy part of the smart contract.
 
 ```c++
 bool is_eden(name account) {
@@ -187,7 +186,7 @@ If you want to contribute to this repository, please follow the steps below:
 
 Read the EOS Costa Rica open source [contribution guidelines](https://guide.eoscostarica.io/docs/open-source-guidelines/) for more information on scheduling conventions.
 
-If you find any bugs, please report them by opening an issue at [this link](https://github.com/eoscostarica/eden-member-check).
+If you find any bugs, please report them by opening an issue at [this link](https://github.com/eoscostarica/eden-member-check/issues).
 
 ## What is EOSIO?
 
@@ -195,11 +194,9 @@ EOSIO is a highly performant open-source blockchain platform, built to support a
 
 ## About EOS Costa Rica
 
-<br>
-<center>
+<p align="center">
 <img src="https://raw.githubusercontent.com/eoscostarica/design-assets/master/logos/eosCR/fullColor-horizontal-transparent-white.png" width="400" >
-</center>
-<br>
+</p>
 
 EOS Costa Rica is an independently-owned, self-funded, bare-metal Genesis block producer that provides stable and secure infrastructure for EOSIO blockchains. We support open source software for our community while offering enterprise solutions and custom smart contract development for our clients.
 
