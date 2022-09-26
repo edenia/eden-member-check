@@ -1,8 +1,15 @@
-<p align="center">
-	<a href="https://eoscostarica.io">
-		<img src="https://raw.githubusercontent.com/eoscostarica/design-assets/master/logos/eosCR/fullColor-horizontal-transparent-white.png" width="350" alt="MIT">
+<div align="center">
+	<a href="https://edenia.com">
+		<img src="https://raw.githubusercontent.com/edenia/.github/master/.github/workflows/images/edenia-logo.png" width="300" alt="Edenia Logo">
 	</a>
-</p>
+	
+![](https://img.shields.io/github/license/edenia/eden-member-check) 
+![](https://img.shields.io/badge/code%20style-standard-brightgreen.svg) 
+![](https://img.shields.io/badge/%E2%9C%93-collaborative_etiquette-brightgreen.svg) 
+![](https://img.shields.io/twitter/follow/edeniaWeb3.svg?style=social&logo=twitter) 
+![](https://img.shields.io/github/forks/edenia/eden-member-check?style=social)
+
+</div>
 
 # Eden Member Check
 
@@ -96,22 +103,22 @@ It is necessary to have the CLSDK installed to get it working because some of th
 To read Eden Members table is needed to first have a small understanding of some basic function or definition of Eden contract use.
 
 #### EDEN_FORWARD_MEMBERS
-It is C++ definition that allow to specify and indicate which fields belongs to the specified struct, here in [member struct](https://github.com/eoscostarica/eden-member-check/blob/main/contracts/edenmember/include/edenmember.hpp#L82) we can check that `struct member` has a value of `member_variant` which represents the `member_v0` or `member_v1` fields.
+It is C++ definition that allow to specify and indicate which fields belongs to the specified struct, here in [member struct](https://github.com/edenia/eden-member-check/blob/main/contracts/edenmember/include/edenmember.hpp#L82) we can check that `struct member` has a value of `member_variant` which represents the `member_v0` or `member_v1` fields.
 
 #### EDEN_FORWARD_FUNCTIONS
-It is as similar as [EDEN_FORWARD_MEMBERS](#eden_forward_members), but It's purpose is for [struct functions](https://github.com/eoscostarica/eden-member-check/blob/main/contracts/edenmember/include/edenmember.hpp#L55-L59) instead of fields.
+It is as similar as [EDEN_FORWARD_MEMBERS](#eden_forward_members), but It's purpose is for [struct functions](https://github.com/edenia/eden-member-check/blob/main/contracts/edenmember/include/edenmember.hpp#L55-L59) instead of fields.
 
 #### EOSIO_REFLECT
-Indicate to the serializer which fields to handle, and clsdk's ABI generator which fields to include, as It happens in [member_v0](https://github.com/eoscostarica/eden-member-check/blob/main/contracts/edenmember/include/edenmember.hpp#L61), [member_v1](https://github.com/eoscostarica/eden-member-check/blob/main/contracts/edenmember/include/edenmember.hpp#L70) and [member](https://github.com/eoscostarica/eden-member-check/blob/main/contracts/edenmember/include/edenmember.hpp#L93).
+Indicate to the serializer which fields to handle, and clsdk's ABI generator which fields to include, as It happens in [member_v0](https://github.com/edenia/eden-member-check/blob/main/contracts/edenmember/include/edenmember.hpp#L61), [member_v1](https://github.com/edenia/eden-member-check/blob/main/contracts/edenmember/include/edenmember.hpp#L70) and [member](https://github.com/edenia/eden-member-check/blob/main/contracts/edenmember/include/edenmember.hpp#L93).
 
 #### EOSIO_ACTIONS
-Receive the contract class, contract account and the list of [action](https://github.com/eoscostarica/eden-member-check/blob/main/contracts/edenmember/include/edenmember.hpp#L127) that are going to be needed by the serializer.
+Receive the contract class, contract account and the list of [action](https://github.com/edenia/eden-member-check/blob/main/contracts/edenmember/include/edenmember.hpp#L127) that are going to be needed by the serializer.
 
 #### EOSIO_ACTION_DISPATCHER
-Take the namespace as input to get the actions that were defined into the [namespace](https://github.com/eoscostarica/eden-member-check/blob/main/contracts/edenmember/src/edenmember.cpp#L18) scope.
+Take the namespace as input to get the actions that were defined into the [namespace](https://github.com/edenia/eden-member-check/blob/main/contracts/edenmember/src/edenmember.cpp#L18) scope.
 
 #### EOSIO_ABIGEN
-Last step is to generate the [abi](https://github.com/eoscostarica/eden-member-check/blob/main/contracts/edenmember/src/edenmember.cpp#L20) according to the before configuration, so then we need to indicate the actions, tables that are going to be public, and the Ricardian Clauses.
+Last step is to generate the [abi](https://github.com/edenia/eden-member-check/blob/main/contracts/edenmember/src/edenmember.cpp#L20) according to the before configuration, so then we need to indicate the actions, tables that are going to be public, and the Ricardian Clauses.
 
 Once that is understood, let's jump into some small snippet code examples.
 
@@ -170,10 +177,6 @@ bool is_eden(name account) {
 }
 ```
 
-## License
-
-MIT © [EOS Costa Rica](https://eoscostarica.io/)
-
 ## Contributing
 
 If you want to contribute to this repository, please follow the steps below:
@@ -184,20 +187,28 @@ If you want to contribute to this repository, please follow the steps below:
 4. Push the commit (`git push origin feat/sometodo`)
 5. Open a Pull Request
 
-Read the EOS Costa Rica open source [contribution guidelines](https://guide.eoscostarica.io/docs/open-source-guidelines/) for more information on scheduling conventions.
+Read the EOS Costa Rica's open source [contribution guidelines](https://guide.eoscostarica.io/docs/open-source-guidelines/) for more information on scheduling conventions.
 
-If you find any bugs, please report them by opening an issue at [this link](https://github.com/eoscostarica/eden-member-check/issues).
+If you find any bugs, please report them by opening an issue at [this link](https://github.com/edenia/eden-member-check/issues).
 
 ## What is EOSIO?
 
 EOSIO is a highly performant open-source blockchain platform, built to support and operate safe, compliant, and predictable digital infrastructures.
 
-## About EOS Costa Rica
+## About Edenia
 
-<p align="center">
-<img src="https://raw.githubusercontent.com/eoscostarica/design-assets/master/logos/eosCR/fullColor-horizontal-transparent-white.png" width="400" >
-</p>
+<div align="center">
 
-EOS Costa Rica is an independently-owned, self-funded, bare-metal Genesis block producer that provides stable and secure infrastructure for EOSIO blockchains. We support open source software for our community while offering enterprise solutions and custom smart contract development for our clients.
+<a href="https://edenia.com">
+	<img width="300" alt="Edenia Logo" src="https://raw.githubusercontent.com/edenia/.github/master/.github/workflows/images/edenia-logo.png"></img>
+</a>
 
-[eoscostarica.io](https://eoscostarica.io/)
+[![Twitter](https://img.shields.io/twitter/follow/EdeniaWeb3?style=for-the-badge)](https://twitter.com/EdeniaWeb3)
+[![Discord](https://img.shields.io/discord/946500573677625344?color=black&label=Discord&logo=discord&logoColor=white&style=for-the-badge)](https://discord.gg/YeGcF6QwhP)
+
+
+</div>
+
+Edenia runs independent blockchain infrastructure and develops web3 solutions. Our team of technology-agnostic builders has been operating since 1987, leveraging the newest technologies to make the internet safer, more efficient, and more transparent.
+
+[edenia.com](https://edenia.com/)

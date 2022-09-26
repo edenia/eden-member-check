@@ -2,14 +2,14 @@
 
 /*
  * @file
- * @author  (C) 2021 by eoscostarica [ https://eoscostarica.io ]
+ * @author  (C) 2021 by edenia [ https://edenia.com ]
  * @version 1.1.0
  *
  * @section DESCRIPTION
  *
  *    Smart contract edenmember 
  *
- *    GitHub:         https://github.com/eoscostarica/eden-member-check
+ *    GitHub:         https://github.com/edenia/eden-member-check
  *
  */
 
@@ -101,7 +101,7 @@ namespace eosio {
     }
 } // namespace eosio
 
-namespace eoscostarica {
+namespace edenia {
     // This table is only for demostration purpose
     struct member {
         name user;
@@ -128,4 +128,4 @@ namespace eoscostarica {
                 "edenmember"_n,
                 action(addmember, user, ricardian_contract(addmember_ricardian)))
                  
-} // namespace eoscostarica
+} // namespace edenia
