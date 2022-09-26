@@ -1,4 +1,4 @@
-namespace eoscostarica {
+namespace edenia {
     // CONTRACTS
     const char* addmember_ricardian = R"(---
 spec_version: 0.1.0
