@@ -3,7 +3,7 @@ namespace eoscostarica {
     const char* addmember_ricardian = R"(---
 spec_version: 0.1.0
 title: Add Eden Member
-summary: The intent of the `{{ addmember }}` action is to allow the `user` account to be included into the eden member table.
+summary: The intent of the `{{ checkmember }}` action is to allow the `member` account to be included into the eden member table.
 ---)";
 
 

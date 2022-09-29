@@ -102,13 +102,7 @@ namespace eosio {
 } // namespace eosio
 
 namespace eoscostarica {
-    // This table is only for demostration purpose
-    struct member {
-        name user;
-        uint64_t primary_key() const { return user.value; }
-    };
-    EOSIO_REFLECT(member, user)
-    typedef eosio::multi_index<"member"_n, member> member_table;
+
 
     struct edenmember  : public eosio::contract {
         using eosio::contract::contract;
@@ -121,11 +115,11 @@ namespace eoscostarica {
         *
         * @memo the account name specific in user parameter is the ram payor
         */
-        void addmember(name user);
+        void checkmember(name member);
     };
 
     EOSIO_ACTIONS(edenmember,
                 "edenmember"_n,
-                action(addmember, user, ricardian_contract(addmember_ricardian)))
+                action(checkmember, member, ricardian_contract(addmember_ricardian)))
                  
 } // namespace eoscostarica
