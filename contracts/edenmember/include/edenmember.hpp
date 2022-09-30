@@ -26,7 +26,7 @@ namespace eosio {
     // ---------------- ADVICE ----------------
     // In Jungle 3, we created an account called genesiseden to simulate official genesis.eden member table on mainnet, so make sure
     // so, please make sure to update genesisdeden to genesis.eden if you are on mainnet
-    constexpr name eden_account{"genesisdeden"_n};
+    constexpr name eden_account{"genesis.eden"_n};
 
     using member_status_type = uint8_t;
     enum member_status : member_status_type {

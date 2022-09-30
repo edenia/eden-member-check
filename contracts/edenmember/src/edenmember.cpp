@@ -1,9 +1,9 @@
 #include "../include/edenmember.hpp"
 
 namespace eoscostarica {
-    void edenmember::checkmember(name member) {
+    void edenmember::checkmember(name account) {
 
-        check( is_eden(member), "Given user is not an Member" );
+        check( is_eden(account), "Given account is not a member account" );
 
     }
 } // namespace eoscostarica
