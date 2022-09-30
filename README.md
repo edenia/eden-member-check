@@ -6,6 +6,8 @@ This project provides a quick way to validate if an EOS account is an active Ede
 
 To build execute - ./deploylocal.sh
 
-This is forked off the project -
+This is forked off the project - https://github.com/edenia/eden-member-check
 
-https://github.com/edenia/eden-member-check
+EOS mainnet contract - genedencheck
+
+
