@@ -15,13 +15,25 @@
 
 This project provides a quick way to get started integrating the logic to validate if an EOS account is an active Eden Member. It is meant to be used as an example to help other projects integrate features for eden members. This same code has been implemented on [eosrate.io](https://eosrate.io) for this purpose.
 
+## EOS Mainnet Contract
+
+The contract is deployed to [`isedenmember`](https://bloks.io/account/isedenmember) account on  the EOS mainnet.
+
+## Getting Started
+
 ### Important Note:
 This project is directly related to edenOS version [82ed3d0](https://github.com/eoscommunity/Eden/tree/82ed3d05892977f7c796c6ebb86a7dab5b6b3d18), future changes to members table structure may not work with this contract.
 
-### Prerequisites
+
+### Pre-Requisites
 
 - [Git](https://git-scm.com/)
-- [EOSIO](https://developers.eos.io/welcome/latest/getting-started-guide/local-development-environment/index)
+- [Docker](https://docker.com/)
+- [Antelope Leap or EOSIO](https://developers.eos.io/welcome/latest/getting-started-guide/local-development-environment/index)
+
+### Quick start
+
+To build execute `./deploylocal.sh`
 
 ## Compilation
 
