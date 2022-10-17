@@ -1,9 +1,9 @@
 namespace edenia {
     // CONTRACTS
-    const char* addmember_ricardian = R"(---
+    const char* checkmember_ricardian = R"(---
 spec_version: 0.1.0
-title: Add Eden Member
-summary: The intent of the `{{ addmember }}` action is to allow the `user` account to be included into the eden member table.
+title: Check Eden Member
+summary: The intent of the `{{ checkmember }}` action is to allow to check if an EOS account is an eden member.
 ---)";
 
 

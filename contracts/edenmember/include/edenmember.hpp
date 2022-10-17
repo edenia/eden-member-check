@@ -23,10 +23,7 @@ using namespace eosio;
 using eosio::public_key;
 
 namespace eosio {
-    // ---------------- ADVICE ----------------
-    // In Jungle 3, we created an account called genesiseden to simulate official genesis.eden member table on mainnet, so make sure
-    // so, please make sure to update genesisdeden to genesis.eden if you are on mainnet
-    constexpr name eden_account{"genesisdeden"_n};
+    constexpr name eden_account{"genesis.eden"_n};
 
     using member_status_type = uint8_t;
     enum member_status : member_status_type {
@@ -102,30 +99,23 @@ namespace eosio {
 } // namespace eosio
 
 namespace edenia {
-    // This table is only for demostration purpose
-    struct member {
-        name user;
-        uint64_t primary_key() const { return user.value; }
-    };
-    EOSIO_REFLECT(member, user)
-    typedef eosio::multi_index<"member"_n, member> member_table;
-
+    
     struct edenmember  : public eosio::contract {
         using eosio::contract::contract;
         
         /**
         *
-        *  Check if given name is an Eden member to add it to the Eden table
+        *  Check if given an EOS account name is an active Eden member.
         *
-        * @param user - Eden member name
+        * @param user - Eden account name
         *
-        * @memo the account name specific in user parameter is the ram payor
+        * @memo the account name specified in user parameter is the ram payer
         */
-        void addmember(name user);
+        void checkmember(name account);
     };
 
     EOSIO_ACTIONS(edenmember,
                 "edenmember"_n,
-                action(addmember, user, ricardian_contract(addmember_ricardian)))
+                action(checkmember, account, ricardian_contract(checkmember_ricardian)))
                  
 } // namespace edenia
