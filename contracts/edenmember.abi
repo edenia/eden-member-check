@@ -11,6 +11,38 @@
                     "type": "name"
                 }
             ]
+        },
+        {
+            "name": "isedenmember",
+            "base": "",
+            "fields": [
+                {
+                    "name": "account_to_notify",
+                    "type": "name"
+                },
+                {
+                    "name": "account_review",
+                    "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "resultiseden",
+            "base": "",
+            "fields": [
+                {
+                    "name": "account_to_notify",
+                    "type": "name"
+                },
+                {
+                    "name": "account_review",
+                    "type": "name"
+                },
+                {
+                    "name": "is_eden",
+                    "type": "bool"
+                }
+            ]
         }
     ],
     "actions": [
@@ -18,6 +50,16 @@
             "name": "checkmember",
             "type": "checkmember",
             "ricardian_contract": "---\nspec_version: 0.1.0\ntitle: Check Eden Member\nsummary: The intent of the `{{ checkmember }}` action is to allow to check if an EOS account is an eden member.\n---"
+        },
+        {
+            "name": "isedenmember",
+            "type": "isedenmember",
+            "ricardian_contract": "---\nspec_version: 0.1.0\ntitle: Validate Eden Member\nsummary: The intent of the `{{ isedenmember }}` action is to allow to validate if an EOS account is an eden member.\n---"
+        },
+        {
+            "name": "resultiseden",
+            "type": "resultiseden",
+            "ricardian_contract": "---\nspec_version: 0.1.0\ntitle: Log Eden Member Result\nsummary: The intent of the `{{ resultiseden }}` action is to log the result of the validation provided by `{{ isedenmember }}`.\n---"
         }
     ],
     "tables": [],
