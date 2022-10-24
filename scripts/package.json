@@ -1,0 +1,11 @@
+{
+  "name": "eden-member-check",
+  "version": "1.0.0",
+  "description": "Validate if an account is an Active Eden Member",
+  "main": "index.js",
+  "repository": "https://github.com/edenia/eden-member-check",
+  "license": "MIT",
+  "dependencies": {
+    "eosjs-api": "^7.0.4"
+  }
+}
