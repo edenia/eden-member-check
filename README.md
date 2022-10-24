@@ -17,13 +17,13 @@ This project provides a quick way to get started integrating the logic to valida
 
 ## EOS Mainnet Contract
 
-The contract is deployed to [`isedenmember`](https://bloks.io/account/isedenmember) account on  the EOS mainnet.
+The contract is deployed to [`isedenmember`](https://bloks.io/account/isedenmember) account on the EOS mainnet.
 
 ## Getting Started
 
 ### Important Note:
-This project is directly related to edenOS version [82ed3d0](https://github.com/eoscommunity/Eden/tree/82ed3d05892977f7c796c6ebb86a7dab5b6b3d18), future changes to members table structure may not work with this contract.
 
+This project is directly related to edenOS version [82ed3d0](https://github.com/eoscommunity/Eden/tree/82ed3d05892977f7c796c6ebb86a7dab5b6b3d18), future changes to members table structure may not work with this contract.
 
 ### Pre-Requisites
 
@@ -109,27 +109,35 @@ make -j
 ```
 
 ## How does CLSDK works with Eden Members table
-It is necessary to have the CLSDK installed to get it working because some of the next definitions are specified right there.
+
+This Smart Contract follows the structure proposed by the CLSDK which has some differences from the base `cdt`, for example the way actions and tables are declared and how they are exposed to the `abi` file.
 
 ### Definitions
-To read Eden Members table is needed to first have a small understanding of some basic function or definition of Eden contract use.
+
+To read Eden Members table, the following definitions are helpful:
 
 #### EDEN_FORWARD_MEMBERS
+
 It is C++ definition that allow to specify and indicate which fields belongs to the specified struct, here in [member struct](https://github.com/edenia/eden-member-check/blob/main/contracts/edenmember/include/edenmember.hpp#L82) we can check that `struct member` has a value of `member_variant` which represents the `member_v0` or `member_v1` fields.
 
 #### EDEN_FORWARD_FUNCTIONS
+
 It is as similar as [EDEN_FORWARD_MEMBERS](#eden_forward_members), but It's purpose is for [struct functions](https://github.com/edenia/eden-member-check/blob/main/contracts/edenmember/include/edenmember.hpp#L55-L59) instead of fields.
 
 #### EOSIO_REFLECT
+
 Indicate to the serializer which fields to handle, and clsdk's ABI generator which fields to include, as It happens in [member_v0](https://github.com/edenia/eden-member-check/blob/main/contracts/edenmember/include/edenmember.hpp#L61), [member_v1](https://github.com/edenia/eden-member-check/blob/main/contracts/edenmember/include/edenmember.hpp#L70) and [member](https://github.com/edenia/eden-member-check/blob/main/contracts/edenmember/include/edenmember.hpp#L93).
 
 #### EOSIO_ACTIONS
+
 Receive the contract class, contract account and the list of [action](https://github.com/edenia/eden-member-check/blob/main/contracts/edenmember/include/edenmember.hpp#L127) that are going to be needed by the serializer.
 
 #### EOSIO_ACTION_DISPATCHER
+
 Take the namespace as input to get the actions that were defined into the [namespace](https://github.com/edenia/eden-member-check/blob/main/contracts/edenmember/src/edenmember.cpp#L18) scope.
 
 #### EOSIO_ABIGEN
+
 Last step is to generate the [abi](https://github.com/edenia/eden-member-check/blob/main/contracts/edenmember/src/edenmember.cpp#L20) according to the before configuration, so then we need to indicate the actions, tables that are going to be public, and the Ricardian Clauses.
 
 Once that is understood, let's jump into some small snippet code examples.
@@ -137,7 +145,9 @@ Once that is understood, let's jump into some small snippet code examples.
 ### Eden Table Struct
 
 When a contract wants to read another table, first step is to have same table struct, for Eden Members the table struct is:
+
 #### member_v0
+
 ```c++
 using member_status_type = uint8_t;
 enum member_status : member_status_type {
@@ -172,6 +182,7 @@ struct member_v0
 ```
 
 #### member_v1
+
 ```c++
 struct member_v1 : member_v0
 {
@@ -217,7 +228,6 @@ EOSIO is a highly performant open-source blockchain platform, built to support a
 
 [![Twitter](https://img.shields.io/twitter/follow/EdeniaWeb3?style=for-the-badge)](https://twitter.com/EdeniaWeb3)
 [![Discord](https://img.shields.io/discord/946500573677625344?color=black&label=Discord&logo=discord&logoColor=white&style=for-the-badge)](https://discord.gg/YeGcF6QwhP)
-
 
 </div>
 
