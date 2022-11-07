@@ -53,10 +53,10 @@ struct member {
 
 ## Second Approach
 
-Currently, the `checkmember` action checks for an account allowing the flow to continue as long as the account is an Active Eden Member account otherwise, the action will fail with an error indicating:
+Currently, the `checkmember` action checks for an account allowing the flow to continue as long as the account is an Active Eden Member account otherwise, the action will fail with an error when:
 
-1. If the account is not an existing EOS Account with error `Account does not exist.`.
-2. If the account is not an Active Eden Member with error `Given account is not an Eden Member`.
+1. The account is not an existing EOS Account: `Account does not exist.`.
+2. The account is not an Active Eden Member: `Given account is not an Eden Member`.
 
 ### Example Code
 
