@@ -4,7 +4,9 @@ This Smart Contract has been updated to follow 3 possible approaches to validate
 
 ## First Approach
 
-Use this repository code base as reference copying the `utils.hpp` file content and create the table as it is normally done when reading another table contract and follow the same structure described in the `edenmember.hpp` file.
+Use this repository code base as reference copying the `utils.hpp` file content and create the table as it is normally done when interacting with other tables' contracts and follow the same structure described in the `edenmember.hpp` file.
+
+### Example Code
 
 ```c++
 struct member_v0 {
@@ -47,16 +49,32 @@ struct member {
 };
 ```
 
-> It is required to be compiled with the `CLSDK`, more info [here](https://gofractally.github.io/contract-lab/book/index.html).
+> Note: It requires to be compiled with the `CLSDK`, more info [here](https://gofractally.github.io/contract-lab/book/index.html).
 
 ## Second Approach
 
-Currently, the `checkmember` action checks for an account allowing the flow to continue as long as the account is Active Eden Member account otherwise, the action will fail with an error indicating:
+Currently, the `checkmember` action checks for an account allowing the flow to continue as long as the account is an Active Eden Member account otherwise, the action will fail with an error when:
 
-1. Account is not an existing EOS Account with error `Account does not exist.`.
-2. Account is not an Active Eden Member with error `Given account is not an Eden Member`.
+1. The account is not an existing EOS Account: `Account does not exist.`.
+2. The account is not an Active Eden Member: `Given account is not an Eden Member`.
 
-The drawback with this solution is if the contract wants to take another effect for the account it won't be possible since the action will fail.
+### Example Code
+
+Here are some things to consider:
+
+- `get_self()`: The contract you are developing.
+- `account`: The account to check.
+- You need to add the `eosio.code` permission to your `active` signature.
+
+```c++
+eosio::action{ { get_self(), "active"_n }, // permission
+                   "isedenmember"_n, // contract
+                   "checkmember"_n, // action
+                   std::tuple{ account } }
+        .send();
+```
+
+> The drawback with this solution is if the querying contract wants to have another effect when the action fails it won't be possible since the flow will break out.
 
 ## Third Approach
 
@@ -75,5 +93,39 @@ The `resultiseden` is going to be used as a bridge that carries the answer of th
 **pip**: Eden Account to validate.
 
 - bob calls alice with: `isedenmember(bob, pip)`.
-- alice checks internally if pip is an Active Eden Member account and put the result in the `resultiseden` as follows: `resultiseden(bob, pip, true)`.
+- alice checks internally if pip is an Active Eden Member account and put the result in the `resultiseden` action as follows: `resultiseden(bob, pip, true)`.
 - bob should be listening for notifications in the `resultiseden`. If the third parameter in the `resultiseden` action is `true`, then, the account is an Active Eden Member, otherwise, the account is not an Eden Account or it is an inactive Eden Member.
+
+### Example Code
+
+Here are some things to consider:
+
+- `account_to_notify`: The contract you are developing. Mostly, you are going to be using the current `account` where your contract is deployed.
+- `account_to_review`: The account to validate.
+- You need to add the `eosio.code` permission to your `active` signature.
+
+```c++
+// your action
+void < namespace >::< contract_class >::customaction( some_parameters... ) {
+    // validations
+    // logic
+
+    eosio::name account_to_notify = get_self();
+    eosio::name account_to_review = "someaccount";
+
+    eosio::action{ { get_self(), "active"_n }, // permission
+                   "isedenmember"_n,           // contract
+                   "isedenmember"_n,           // action
+                   std::tuple{ account_to_notify, account_to_review } }
+        .send();
+}
+
+// listener action
+void < namespace >::< contract_class >::notify_resultiseden( name account_to_notify,
+                                                     name account_to_review,
+                                                     bool is_eden ) {
+    // logic
+}
+```
+
+> To implement a listener action, take a look at the `clsdk` documentation in the [Notifications](https://gofractally.github.io/contract-lab/book/contract/notify/index.html) section or you can also use as reference the [v2.1 developer guide](https://developers.eos.io/welcome/v2.1/smart-contract-guides/payable-actions/#deposit) if you are working with default `.cdt`.
